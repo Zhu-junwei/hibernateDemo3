@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.zhujunwei.domain3.C" table="c">
+		<id name="c_id" column="c_id">
+			<generator class="native" />
+		</id>
+		
+		<property name="c_name" column="c_name" />
+		
+		<set name="ss" table="s_c" inverse="true">
+			<key column="c_id"/>
+			<many-to-many class="com.zhujunwei.domain3.S" column="s_id"/>
+		</set>
+	</class>
+</hibernate-mapping>

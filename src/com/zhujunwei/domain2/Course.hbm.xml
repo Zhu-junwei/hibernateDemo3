@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+
+	<class name="com.zhujunwei.domain2.Course" table="course2">
+	
+		<!-- 主键 -->
+		<id name="c_id" column="c_id">
+			<generator class="native"/>
+		</id>
+		
+		<!-- 普通属性 -->
+		<property name="c_name" column="c_name"/>		
+		
+		<!-- 多对多映射 -->
+		<!-- 
+			name:在对方的集合名称
+			table:中间表的表名
+		 -->
+		<set name="students" table="student_course" inverse="true">
+			<!-- column:中间表的外键名称 -->
+			<key column="c_id"/>
+			<!-- 
+				class:对方类的全路径
+				column:对方的对象在中间表中的外键名称
+			 -->
+			 <many-to-many class="com.zhujunwei.domain2.Studnet" column="s_id"/>
+		</set>
+	</class>
+</hibernate-mapping>
